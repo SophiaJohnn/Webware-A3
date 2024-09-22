@@ -1,5 +1,7 @@
 // FRONT-END (CLIENT) JAVASCRIPT HERE
 
+const { json } = require("express");
+
 let text = []; // So I am able to call text in the showData function, makes text global
 
 const submit = async function( event ) {
@@ -8,26 +10,24 @@ const submit = async function( event ) {
   // this was the original browser behavior and still
   // remains to this day
   event.preventDefault()
-
   const dateInput = document.querySelector( '#date' )
   const entryInput = document.querySelector( '#entry' )
   const happinessInput = document.querySelector( '#happiness')
   const motivationInput = document.querySelector( '#motivation')
   const goodDayCalc = goodDay() 
 
-  const taskInput = "add"
         json = { 
           date: dateInput.value,
           entry: entryInput.value,
           happiness: happinessInput.value,
           motivation: motivationInput.value,
           goodDay: goodDayCalc,
-          task: taskInput
         },
         body = JSON.stringify( json )
 
-  const response = await fetch( '/submit', {
+  const response = await fetch( '/add', {
     method:'POST',
+    headers: {"Content-Type": "application/json"},
     body 
   })
 
@@ -43,46 +43,75 @@ window.onload = function() {
   button.onclick = submit;
   const thirdButton = document.querySelector('#deleteButton');
   thirdButton.onclick = deleteTask;
+  const fourthButton = document.querySelector('.updateButtonClose');
+  fourthButton.onclick = update;
+  
 }
 
 const beforeSubmit = async function( event ) 
 {
-  const taskInput = "leave"
-    json = { 
-      task: taskInput
-    },
-    body = JSON.stringify( json )
-    const response = await fetch( '/beforeSubmit', 
-      {
-        method:'POST',
-        body 
-      })
-    text = await response.json()
-    showData()
+  alert("Button clicked"); //TAKE OUT
+  const response = await fetch( '/docs', 
+    {
+      method:'GET',
+      headers: {"Content-Type": "application/json"},
+    })
+  text = await response.json()
+  showData()
 }
 
 const deleteTask = async function( event )
 {
   event.preventDefault()
-  const dateDeleteInput = document.querySelector('#deleteDates')
+  const dateIDInput = document.querySelector('#deleteID')
   
-  const taskInput = "delete"
   
   json = { 
-    deleteDate: dateDeleteInput.value,
-    task: taskInput
+    deleteID: dateIDInput.value,
   },
 
   body = JSON.stringify(json)
 
-  const response = await fetch( '/deleteTask',
+  const response = await fetch( '/remove',
     {
       method: 'POST',
-      body
+      headers: {"Content-Type": "application/json"},
+      body 
     }
   )
   text = await response.json()
   showData()
+}
+
+const update = async function( event ) 
+{
+  event.preventDefault()
+  const IDInput = document.querySelector('#updateIDIdentifier')
+  const updateDateInput = document.querySelector( '#updateDate' )
+  const updateEntryInput = document.querySelector( '#updateEntry' )
+  const updateHappinessInput = document.querySelector( '#updateHappiness')
+  const updateMotivationInput = document.querySelector( '#updateMotivation')
+  const goodDayCalc = goodDay() 
+
+        json = { 
+          updateIDIdentifier: IDInput.value,
+          updateDate: updateDateInput.value,
+          updateEntry: updateEntryInput.value,
+          updateHappiness: updateHappinessInput.value,
+          updateMotivation: updateMotivationInput.value,
+          updateGoodDay: goodDayCalc,
+        },
+        body = JSON.stringify( json )
+
+  const response = await fetch( '/update', {
+    method:'POST',
+    headers: {"Content-Type": "application/json"},
+    body 
+  })
+
+  text = await response.json()
+  showData()
+
 }
 
 
@@ -94,7 +123,7 @@ function showData()
   for(let i = 0; i <text.length; i++)
   {
     const row = document.createElement("tr");
-
+    
     const cellDate = document.createElement("td");
     const cellEntry = document.createElement("td");
     const cellHappiness = document.createElement("td");
@@ -112,7 +141,7 @@ function showData()
     cellHappiness.appendChild(cellNumberHappiness)
     cellMotivation.appendChild(cellNumberMotivation)
     cellGoodDay.appendChild(cellTextGoodDay)
-
+    
     row.appendChild(cellDate);
     row.appendChild(cellEntry);
     row.appendChild(cellHappiness);
@@ -125,6 +154,20 @@ function showData()
   generateTable(table,text);
 }
 
+// function generateTable(table, text) { //TEXT IS NOT ITERABLE FOR DELETE
+// table.querySelectorAll("tr:not(:first-child)").forEach(row => row.remove());
+// for (let element of text) 
+//   {
+//     let row = table.insertRow();
+//     let entries = Object.entries(element).slice(1); 
+//     for (let [key, value] of entries) 
+//       {
+//       let cell = row.insertCell();
+//       let text = document.createTextNode(value);
+//       cell.appendChild(text);
+//       }
+//   }
+// }
 function generateTable(table, text) {
   table.querySelectorAll("tr:not(:first-child)").forEach(row => row.remove());
   for (let element of text) {
@@ -148,3 +191,5 @@ function goodDay()
     }
     return goodDay
   }
+
+

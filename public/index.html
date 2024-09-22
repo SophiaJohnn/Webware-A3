@@ -1,12 +1,11 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
-    <title>CS4241 Assignment 2</title>
+    <title>CS4241 Assignment 3</title>
     <meta charset="utf-8">
-    <script src="js/main.js"></script>
-    <link rel="stylesheet" href="css/main.css">
+    <script src="js/login.js"></script>
+    <link rel="stylesheet" href="css/login.css">
     
-    <!-- get rid of favicon error -->
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,54 +19,57 @@
     Daily Journal
   </h1>
   <h2>
-    A place where you can regularly journal your feelings and whats on your mind.
+    Login
   </h2>
   <body>
     <div class = "container">
       <div>
         <form>
-          <input type="text" id="date" placeholder="Today's Date"> 
+          <input type="text" id="username" placeholder="Enter Your Username"> 
         </form>
-      </div>
-      <div>
         <form>
-          <input type="text" id="entry" placeholder="Today's Entry">
-       </form>
-      </div>
-      <div>
-        <form>
-            <input type="number" id="happiness" placeholder="Rate Happiness (from 1-5)" min="1" max="5" step="1">
+          <input type="text" id="password" placeholder="Enter Your Password"> 
         </form>
+      </div> 
+        <button id="LoginButton">Login</button>   
       </div>
-      <div>
-        <form>
-          <input type="number" id="motivation" placeholder="Rate Motivation (from 1-5)" min="1" max="5" step="1">
-        </form>
-      </div>
-      <div id="buttonSection">
-        <button id="button">Submit</button>
-        <input type="text" id="deleteDates" placeholder="Enter Date to Delete Entries">
-        <button id="deleteButton">Delete</button>
-      </div>
-      <div>
-        <button id="pastEntries">Display Journal Entries</button>    
-      </div>
-      <div>
-        <table id="dataTbl">
-          <thead>
-            <tr>
-              <th> Date </th>
-              <th> Entry </th>
-              <th> Happiness </th>
-              <th> Motivation </th>
-              <th> Good Day </th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      <div>
-      </div>
-    </div>
   </body>
+</html> -->
+
+
+<!doctype html>
+<html lang='en'>
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=Nerko+One&display=swap" rel="stylesheet">
+  <head>
+    <h1>
+      Daily Journal
+    </h1>
+    <h2>
+      Login
+    </h2>
+    <body>
+      <div class = "container">
+      <form action='/login' method='POST'>
+        <div>
+          <input type='text' name='username'>
+        </div>
+        <div>
+          <input type='password' name='password'>
+        </div>
+        <div>
+          <input type='submit'>
+        </div>
+      </form>
+    </div>
+    </body>
+  </head>
 </html>
 
