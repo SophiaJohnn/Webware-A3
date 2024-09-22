@@ -24,3 +24,16 @@ h1{
     align-items: center;
     gap: 10px;
   }
+  input {
+    width: 300px; 
+    height: auto; 
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+  }
+  #submit
+  {
+    width: 100px;
+    height: auto;
+  }

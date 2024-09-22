@@ -16,6 +16,7 @@ app.use( cookie({
 
 
 app.post( '/login', async (req,res)=> {
+  // console.log("hi")
   // express.urlencoded will put your key value pairs 
   // into an object, where the key is the name of each
   // form field and the value is whatever the user entered
@@ -31,6 +32,7 @@ app.post( '/login', async (req,res)=> {
     res.redirect( 'loggedIn.html' )
     accountDatabase = u
     collectionJD = await client.db("Journals").collection(accountDatabase)
+    console.log("hi")
   }
   if(onlyUsername && !account)
   {
@@ -74,7 +76,6 @@ let collectionJD = null
 async function run() {
   await client.connect()
   collectionJD = await client.db("Journals").collection(accountDatabase)
-  console.log("hiiii")
 }
 
 run()
