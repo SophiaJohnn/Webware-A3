@@ -3,6 +3,8 @@ Assignment 3: Sophia John - https://a3-sophiajohnn.glitch.me
 ## Daily Journal
 This project is a website where you are able to journal as often as you want. You are able to add, delete, and modify entries as well as display them. Based on how motivated or happy you are the website will calculate whether you had a good day or not.
 
+You can login using "entry" as a username and "123" as a password, this account already has preexisting data. You can also create a new username as well.
+
 When running this project make sure to preview it in a new window.
 
 There are four inputs for the user: the date, an entry, a rating from 1-5 of how happy you are, and a rating from a 1-5 of how motivated you are. To delete an entry enter in a date and all entries from that date will be deleted. To show all journal entries press "Display Journal Entries." To update an entry click update and update any values in the entry - you MUST put in the id in order for an entry to udpate.
