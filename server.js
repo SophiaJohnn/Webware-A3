@@ -1,11 +1,17 @@
 require('dotenv').config();
 
-let accountDatabase = null
+let accountDatabase = null;
+let collectionJD = null;
 
 const express = require("express"),
       cookie  = require( 'cookie-session' ),
+      hbs     = require( 'express-handlebars' ).engine,
       { MongoClient, ObjectId } = require("mongodb"),
       app = express()
+
+app.engine( 'handlebars',  hbs() )
+app.set(    'view engine', 'handlebars' )
+app.set(    'views',       './views' )
 
 app.use( express.urlencoded({ extended:true }) )
 
@@ -20,7 +26,7 @@ app.post( '/login', async (req,res)=> {
   // express.urlencoded will put your key value pairs 
   // into an object, where the key is the name of each
   // form field and the value is whatever the user entered
-  console.log( req.body )
+  // console.log( req.body )
   let u = req.body.username;
   let p = req.body.password;
   const collectionD = await client.db("Journals").collection("Accounts");
@@ -29,14 +35,13 @@ app.post( '/login', async (req,res)=> {
 
   if(account) {
     req.session.login = true
-    res.redirect( 'loggedIn.html' )
     accountDatabase = u
     collectionJD = await client.db("Journals").collection(accountDatabase)
-    console.log("hi")
+    res.redirect( 'loggedIn.html' )
   }
   if(onlyUsername && !account)
   {
-    //print wrong password
+    res.render('LoginFailed', { msg:'Wrong Password Try Again', layout:false })
   }
   else
   {
@@ -71,11 +76,8 @@ app.use(express.json() )
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.vjt7o.mongodb.net/`
 const client = new MongoClient( uri )
 
-let collectionJD = null
-
 async function run() {
   await client.connect()
-  collectionJD = await client.db("Journals").collection(accountDatabase)
 }
 
 run()
@@ -100,7 +102,7 @@ app.use( (req,res,next) => {
 
 app.post( '/add', async (req,res) => {
   const result = await collectionJD.insertOne( req.body )
-  res.json( result )
+  // res.json( result ) //DO I NEED THIS
 })
 
 // assumes req.body takes form { _id:5d91fb30f3f81b282d7be0dd } etc.

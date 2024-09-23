@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Conditional Styling • Pico CSS</title>
+    <meta name="description" content="A minimal example with the conditional version." />
+
+    <!-- Pico.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.conditional.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="container">
+      <hgroup>
+        <h1>Daily Journal</h1>
+      </hgroup>
+      <div class="pico">
+        <nav>
+          <ul>
+            <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+            <li><a href="#" data-theme-switcher="light">Light</a></li>
+            <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- ./ Header -->
+
+    <!-- Main -->
+    <main class="container">
+      <!-- Styled -->
+      <section class="pico">
+        <h2>Login</h2>
+        <form action='/login' method='POST'>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            aria-label="Username"
+            required
+          />
+          <input
+            type="text"
+            name="password"
+            placeholder="Password"
+            aria-label="Password"
+            required
+          />
+          <button type="submit" id="submit" >Submit</button>
+        </form>
+        <p>
+          {{{msg}}}
+          </p>
+      </section>
+      <!-- ./ Styled -->
+
+    </main>
+
+    <!-- Minimal theme switcher -->
+    <script src="js/login.js"></script>
+  </body>
+</html>

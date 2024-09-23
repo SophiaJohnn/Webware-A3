@@ -1,6 +1,6 @@
 // FRONT-END (CLIENT) JAVASCRIPT HERE
 
-const { json } = require("express");
+// const { json } = require("express");
 
 let text = []; // So I am able to call text in the showData function, makes text global
 
@@ -50,7 +50,7 @@ window.onload = function() {
 
 const beforeSubmit = async function( event ) 
 {
-  alert("Button clicked"); //TAKE OUT
+  // alert("Button clicked"); //TAKE OUT
   const response = await fetch( '/docs', 
     {
       method:'GET',
