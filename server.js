@@ -48,6 +48,7 @@ app.post( '/login', async (req,res)=> {
     const newAccount = { username: u, password: p };
     await collectionD.insertOne(newAccount);
     client.db("Journals").createCollection(u) 
+    res.render('AccountCreated', { msg:'Account Created Login Again', layout:false })
     //say account created login again
 
   }

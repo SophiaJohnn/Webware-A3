@@ -1,19 +1,15 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
     <title>CS4241 Assignment 3</title>
     <meta charset="utf-8">
     <script src="js/main.js"></script>
-    <link rel="stylesheet" href="css/main.css">
-  
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap" rel="stylesheet">
-  
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=Nerko+One&display=swap" rel="stylesheet">
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.conditional.min.css"
+    />
+
   </head>
   <h1>
     Daily Journal
@@ -28,6 +24,7 @@
           <input type="text" id="date" placeholder="Today's Date"> 
         </form>
       </div>
+      
       <div class = "popup">
         <div class = "popup-content">
           <h3>
@@ -51,6 +48,8 @@
         <a href= "#" class= "updateButtonClose">Update</a>
         </div>  
       </div>
+
+
       <div>
         <form>
           <input type="text" id="entry" placeholder="Today's Entry">
@@ -105,5 +104,115 @@
       });
     </script>    
   </body>
-</html>
+</html> -->
 
+
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>CS4241 Assignment 3</title>
+    <meta charset="utf-8">
+    <script src="js/main.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css" />
+</head>
+
+<body>
+    <header class = "container">
+        <h1 class = "container">Daily Journal</h1>
+        <h2 style="font-size: 20px;" >A place where you can regularly journal your feelings and what’s on your mind.</h2>
+    </header>
+    
+    <main class="container">
+        <form id="journalForm">
+            <label for="date" >Today's Date</label>
+            <input type="date" id="date" placeholder="Today's Date" required>
+
+            <label for="entry">Today's Entry</label>
+            <textarea id="entry" placeholder="What's on your mind?" required></textarea>
+
+            <label for="happiness">Rate Happiness (from 1-5)</label>
+            <input type="number" id="happiness" min="1" max="5" step="1" required>
+
+            <label for="motivation">Rate Motivation (from 1-5)</label>
+            <input type="number" id="motivation" min="1" max="5" step="1" required>
+
+            <button id="button" type="submit">Submit</button>
+        </form>
+
+        <div id="controls">
+          <label for="deleteID">Enter ID to Delete Entries</label>
+          <input type="text" id="deleteID" placeholder="ID to Delete">
+          <section class="pico" style="text-align: center;">
+            <div class="buttons" style="margin-top: 1rem;">
+              <button id="deleteButton" type="button">Delete</button>
+              <button id="updateButton" type="button">Update</button>
+              <button id="pastEntries" type="button">Display Journal Entries</button>
+            </div>
+          </section>
+        </div>
+
+        <section>
+            <table id="dataTbl">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Entry</th>
+                        <th>Happiness</th>
+                        <th>Motivation</th>
+                        <th>Good Day</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Popup  -->
+        <dialog id="editEntryModal">
+            <article>
+                <header>
+                    <h3>Edit an Entry</h3>
+                    <a href="#" class="close" aria-label="Close" id="closeModal">&times;</a>
+                </header>
+                <form id="editEntryForm">
+                    <label for="updateIDIdentifier">ID of Entry</label>
+                    <input type="text" id="updateIDIdentifier" placeholder="ID of Entry" required>
+
+                    <label for="updateDate">Today's Date</label>
+                    <input type="date" id="updateDate" required>
+
+                    <label for="updateEntry">Today's Entry</label>
+                    <textarea id="updateEntry" placeholder="What's on your mind?" required></textarea>
+
+                    <label for="updateHappiness">Rate Happiness (from 1-5)</label>
+                    <input type="number" id="updateHappiness" min="1" max="5" step="1" required>
+
+                    <label for="updateMotivation">Rate Motivation (from 1-5)</label>
+                    <input type="number" id="updateMotivation" min="1" max="5" step="1" required>
+
+                    <a href= "#" class= "updateButtonClose">Update</a>
+                </form>
+            </article>
+        </dialog>
+    </main>
+
+    <script>
+        // Open modal on update button click
+        document.getElementById("updateButton").addEventListener("click", function () {
+            document.getElementById("editEntryModal").showModal();
+        });
+
+        // Close modal on close button click
+        document.getElementById("closeModal").addEventListener("click", function () {
+            document.getElementById("editEntryModal").close();
+        });
+    </script>
+</body>
+
+</html>
