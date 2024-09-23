@@ -22,11 +22,7 @@ app.use( cookie({
 
 
 app.post( '/login', async (req,res)=> {
-  // console.log("hi")
-  // express.urlencoded will put your key value pairs 
-  // into an object, where the key is the name of each
-  // form field and the value is whatever the user entered
-  // console.log( req.body )
+
   let u = req.body.username;
   let p = req.body.password;
   const collectionD = await client.db("Journals").collection("Accounts");
@@ -41,22 +37,16 @@ app.post( '/login', async (req,res)=> {
   }
   if(onlyUsername && !account)
   {
-    res.render('LoginFailed', { msg:'Wrong Password Try Again', layout:false })
+    return res.render('LoginFailed', { msg:'Wrong Password Try Again', layout:false })
   }
-  else
+  else if(!account)
   {
     const newAccount = { username: u, password: p };
     await collectionD.insertOne(newAccount);
     client.db("Journals").createCollection(u) 
-    res.render('AccountCreated', { msg:'Account Created Login Again', layout:false })
-    //say account created login again
+    return res.render('AccountCreated', { msg:'Account Created Login Again', layout:false })
 
   }
-
-  // else{
-    
-  //   res.sendFile( __dirname + '/public/index.html' )
-  // }
  
 })
 
@@ -103,7 +93,6 @@ app.use( (req,res,next) => {
 
 app.post( '/add', async (req,res) => {
   const result = await collectionJD.insertOne( req.body )
-  // res.json( result ) //DO I NEED THIS
 })
 
 // assumes req.body takes form { _id:5d91fb30f3f81b282d7be0dd } etc.
@@ -131,37 +120,4 @@ app.post( '/update', async (req,res) => {
   console.log(result)
   res.json( result )
 })
-
-
-
-// app.post("/login", async (req, res) => {
-  
-//   let username = req.body.enteredUsername;
-//   let password = req.body.enteredPassword;
-
-//   const collection = await client.db("Journals").collection("Accounts");
-//   const account = await collection.findOne({ username, password });
-//   if (account)
-//   {
-//     accountDatabase = username;
-//     // window.location.href = '/loggedIn.html';
-//     res.redirect('/loggedIn.html');
-//   }
-//   else{
-//     if(await collection.findOne({ username})) {
-//       //say cannot create an account
-//  }
-//     else{
-//       const newAccount = { username, password };
-//       await collection.insertOne(newAccount);
-//       client.db("Journals").createCollection(username)
-//       res.json(account); //MIGHT NEED
-//       //say account created login again
-//     }
-//   }
-// })
-
-
-
-
 app.listen(3000)

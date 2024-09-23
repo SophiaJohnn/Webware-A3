@@ -1,114 +1,3 @@
-<!-- <!doctype html>
-<html lang="en">
-  <head>
-    <title>CS4241 Assignment 3</title>
-    <meta charset="utf-8">
-    <script src="js/main.js"></script>
-    
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.conditional.min.css"
-    />
-
-  </head>
-  <h1>
-    Daily Journal
-  </h1>
-  <h2>
-    A place where you can regularly journal your feelings and whats on your mind.
-  </h2>
-  <body>
-    <div class = "container">
-      <div>
-        <form>
-          <input type="text" id="date" placeholder="Today's Date"> 
-        </form>
-      </div>
-      
-      <div class = "popup">
-        <div class = "popup-content">
-          <h3>
-            Edit an Entry
-          </h3>
-          <form>
-            <input type="text" id="updateIDIdentifier" placeholder="ID of Entry"> 
-          </form>
-          <form>
-            <input type="text" id="updateDate" placeholder="Today's Date"> 
-          </form>
-          <form>
-            <input type="text" id="updateEntry" placeholder="Today's Entry">
-         </form>
-         <form>
-          <input type="number" id="updateHappiness" placeholder="Rate Happiness (from 1-5)" min="1" max="5" step="1">
-        </form>
-        <form>
-          <input type="number" id="updateMotivation" placeholder="Rate Motivation (from 1-5)" min="1" max="5" step="1">
-        </form>
-        <a href= "#" class= "updateButtonClose">Update</a>
-        </div>  
-      </div>
-
-
-      <div>
-        <form>
-          <input type="text" id="entry" placeholder="Today's Entry">
-       </form>
-      </div>
-      <div>
-        <form>
-            <input type="number" id="happiness" placeholder="Rate Happiness (from 1-5)" min="1" max="5" step="1">
-        </form>
-      </div>
-      <div>
-        <form>
-          <input type="number" id="motivation" placeholder="Rate Motivation (from 1-5)" min="1" max="5" step="1">
-        </form>
-      </div>
-      <div id="buttonSection">
-        <button id="button">Submit</button>
-        <input type="text" id="deleteID" placeholder="Enter ID to Delete Entries">
-        <button id="deleteButton">Delete</button>
-      </div>
-      <div>
-        <button id="updateButton">Update</button>
-      </div>
-      <div>
-        <button id="pastEntries">Display Journal Entries</button>    
-      </div>
-      <div>
-        <table id="dataTbl">
-          <thead>
-            <tr>
-              <th> ID </th>
-              <th> Date </th>
-              <th> Entry </th>
-              <th> Happiness </th>
-              <th> Motivation </th>
-              <th> Good Day </th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      <div>
-      </div>
-    </div>
-    <script>
-      document.getElementById("updateButton").addEventListener("click", function()
-      {
-        document.querySelector(".popup").style.display = "flex";
-      })
-      document.querySelector(".updateButtonClose").addEventListener("click", function() 
-      {
-      document.querySelector(".popup").style.display = "none";
-      });
-    </script>    
-  </body>
-</html> -->
-
-
-
-
 <!doctype html>
 <html lang="en">
 
@@ -116,7 +5,7 @@
     <title>CS4241 Assignment 3</title>
     <meta charset="utf-8">
     <script src="js/main.js"></script>
-
+    <script src="js/login.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css" />
 </head>
 
@@ -203,12 +92,12 @@
     </main>
 
     <script>
-        // Open modal on update button click
+        // Open modal 
         document.getElementById("updateButton").addEventListener("click", function () {
             document.getElementById("editEntryModal").showModal();
         });
 
-        // Close modal on close button click
+        // Close modal 
         document.getElementById("closeModal").addEventListener("click", function () {
             document.getElementById("editEntryModal").close();
         });
